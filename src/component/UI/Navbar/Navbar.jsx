@@ -15,46 +15,66 @@ const Navbar = () => {
             <div className={classes.navbar}>
 
                 <Link to="/home" className={classes.link}>
-                    <div className={classes.block_left}>
+
+                    <div className={classes.logo}>
                         <img src={logo_img} alt="logo" draggable={false} className={classes.svg_big}/>
+
+                        <div className={classes.logo_text}>
+                            <p>NodeSale</p>
+                            <p className={classes.p_lower}>
+                                Продавать проще, чем кажется
+                            </p>
+                        </div>
                     </div>
+
                 </Link>
 
-                <div className={classes.logo_text}>
-                    <p>NodeSale</p>
-                    <span>Продавать проще, чем кажется</span>
-                </div>
+                <Link to="/home" className={classes.link}>
 
-                <div className={classes.block_Market}>
-                    <img src={market_img} alt="" draggable={false} className={classes.svg_small}/>
-                    <p>Товары</p>
-                </div>
+                    <div className={classes.MarketTeam}>
 
-                <div className={classes.block_Team}>
-                    <img src={team_img} draggable={false} className={classes.svg_small}/>
-                    <p>Партнёрам</p>
-                </div>
+                        <div className={classes.block_MarketTeam}>
+                            <img src={market_img} alt="" draggable={false}/>
+                            <p>Товары</p>
+                        </div>
+
+                        <div className={classes.block_MarketTeam}>
+                            <img src={team_img} draggable={false}/>
+                            <p>Партнёрам</p>
+                        </div>
+
+                    </div>
+
+                </Link>
 
                 <div className={classes.search_block}>
                     <p>Поисковая строка</p>
                 </div>
 
-                <div className={classes.block_OrdersCart}>
-                    <img src={cart_img} alt="" draggable={false} className={classes.svg_small}/>
-                    <p>Корзина</p>
-                </div>
+                <div className={classes.CartOrdersProfile}>
 
-                <div className={classes.block_OrdersCart}>
-                    <img src={order_img} alt="" draggable={false} className={classes.svg_small}/>
-                    <p>Заказы</p>
-                </div>
+                    <Link to="/home" className={classes.link}>
+                        <div className={classes.block_OrdersCartProfile}>
+                            <img src={cart_img} alt="" draggable={false}/>
+                            <p>Корзина</p>
+                        </div>
+                    </Link>
 
-                <Link to="/profile" className={classes.link}>
-                    <div className={classes.block_right}>
-                        <img src={profile_img} alt="" draggable={false} className={classes.svg_medium}/>
-                        <p>Профиль</p>
-                    </div>
-                </Link>
+                    <Link to="/home" className={classes.link}>
+                        <div className={classes.block_OrdersCartProfile}>
+                            <img src={order_img} alt="" draggable={false}/>
+                            <p>Заказы</p>
+                        </div>
+                    </Link>
+
+                    <Link to="/home" className={classes.link}>
+                        <div className={classes.block_OrdersCartProfile}>
+                            <img src={profile_img} alt="" draggable={false}/>
+                            <p>Профиль</p>
+                        </div>
+                    </Link>
+
+                </div>
 
             </div>
 

@@ -1,4 +1,6 @@
 body{
+    display: flex;
+    justify-content: center;
     background-color: rgb(242, 245, 250);
 }
 
@@ -7,11 +9,9 @@ main{
     background-color: #fff;
     border-radius: 20px 20px 0 0;
     margin-top: 75px;
-    /*border: 1px solid black;*/
     display: flex;
     justify-content: space-around;
-    margin-left: 300px;
-    margin-right: 300px;
+    width: 90vw;
     height: 100vh;
 }
 
@@ -27,7 +27,7 @@ main{
     gap: 40px;
     margin-top: 40px;
     margin-bottom: 40px;
-    width: 750px;
+    width: 39vw;
     height: 170px;
 }
 
@@ -58,14 +58,14 @@ main{
     gap: 40px;
     margin-top: 40px;
     margin-bottom: 40px;
-    width: 750px;
+    width: 39vw;
     height: 300px;
 }
 
 .finances_card{
     background-color: rgb(242, 245, 250);
     border-radius: 20px 20px 20px 20px;
-    width: 500px;
+    width: 26vw;
     height: 250px;
 }
 
@@ -104,7 +104,7 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 300px;
+    width: 16vw;
     margin-right: 100px;
     margin-left: 100px;
     margin-top: 10px;
@@ -120,7 +120,7 @@ main{
 .conditions_of{
     background-color: rgb(242, 245, 250);
     border-radius: 20px 20px 20px 20px;
-    width: 500px;
+    width: 25vw;
     height: 80px;
     display: flex;
     align-items: center;
@@ -138,8 +138,8 @@ main{
 .history_of_orders{
     background-color: rgb(242, 245, 250);
     border-radius: 20px 20px 20px 20px;
-    width: 800px;
-    height: 600px;
+    width: 40vw;
+    height: 50vh;
     display: flex;
     align-items: center;
     justify-content: center;

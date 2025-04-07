@@ -1,23 +1,22 @@
 .container{
-    background-color: rgb(242, 245, 250) ;
-}
-
-.navbar{
     display: flex;
     justify-content: center;
-    /*border-left-width: 20px;*/
-    border-radius: 20px 20px 0 0;
+    font-family: "Lohit_Devanagari", sans-serif;
 }
 
-.block_left{
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding-left: 25px;
+.navbar {
     background-color: #fff;
-    border-radius: 0 0 0 20px;
-    width: 125px;
-    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90vw;
+    height: 10vh;
+    border-radius: 0 0 20px 20px;
+}
+
+.logo{
+    display: flex;
+    width: 18vw;
 }
 
 .logo_text{
@@ -25,98 +24,59 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 4px;
-    background-color: #fff;
-    width: 125px;
-    height: 100px;
+    font-size: 1.2em;
 }
 
-.block_Market{
+.MarketTeam{
+    display: flex;
+    justify-content: space-around;
+    width: 20vw;
+}
+
+.block_MarketTeam{
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
-    background-color: #fff;
-    width: 175px;
-    height: 100px;
-}
-
-.block_Team{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2px;
-    background-color: #fff;
-    width: 175px;
-    height: 100px;
 }
 
 .search_block{
     display: flex;
     justify-content: center;
-    align-items: center;
-    /*border: 1px solid black;*/
-    padding: 16px;
-    background-color: #fff;
-    width: 500px;
+    width: 26vw;
 }
 
-.block_OrdersCart{
+.CartOrdersProfile{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 20vw;
+}
+
+.block_OrdersCartProfile{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 4px;
-    background-color: #fff;
-    width: 90px;
-    height: 100px;
-}
-
-.block_right{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
-    padding-right: 50px;
-    background-color: #fff;
-    border-radius: 0 0 20px;
-    width: 140px;
-    height: 100px;
-}
-
-.svg_small{
-    width: 32px;
-    height: 32px;
-}
-
-.svg_medium{
-    width: 38px;
-    height: 38px;
+    gap: 8px;
 }
 
 .svg_big{
-    width: 130px;
-    height: 90px;
+    margin-bottom: 30px;
+    width: 170px;
+    height: 130px;
 }
 
-span {
-    font-family: "Lohit_Devanagari", sans-serif;
-    /*text-decoration-color: yellow;*/
-    font-size: 10px;
+.p_lower{
+    font-size: 0.9em;
     text-align: left;
 }
 
 p{
-    font-family: "Lohit_Devanagari", sans-serif;
     text-align: center;
-    /*font-weight: bold;*/
-    font-size: 16px;
+    font-size: 1.1em;
     color: black;
 }
 
 .link {
     text-decoration: none;
 }
-
-
