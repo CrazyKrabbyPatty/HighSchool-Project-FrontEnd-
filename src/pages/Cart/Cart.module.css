@@ -1,0 +1,11 @@
+.first_column{
+    display: flex;
+    flex-direction: column;
+}
+
+.second_column{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 300px;
+}

@@ -34,12 +34,12 @@ const Navbar = () => {
                     <div className={classes.MarketTeam}>
 
                         <div className={classes.block_MarketTeam}>
-                            <img src={market_img} alt="" draggable={false}/>
+                            <img src={market_img} alt="" draggable={false} className={classes.small_icons}/>
                             <p>Товары</p>
                         </div>
 
                         <div className={classes.block_MarketTeam}>
-                            <img src={team_img} draggable={false}/>
+                            <img src={team_img} draggable={false} className={classes.small_icons}/>
                             <p>Партнёрам</p>
                         </div>
 
@@ -53,23 +53,23 @@ const Navbar = () => {
 
                 <div className={classes.CartOrdersProfile}>
 
-                    <Link to="/home" className={classes.link}>
+                    <Link to="/cart" className={classes.link}>
                         <div className={classes.block_OrdersCartProfile}>
-                            <img src={cart_img} alt="" draggable={false}/>
+                            <img src={cart_img} draggable={false} className={classes.small_icons}/>
                             <p>Корзина</p>
                         </div>
                     </Link>
 
                     <Link to="/home" className={classes.link}>
                         <div className={classes.block_OrdersCartProfile}>
-                            <img src={order_img} alt="" draggable={false}/>
+                            <img src={order_img} draggable={false} className={classes.small_icons}/>
                             <p>Заказы</p>
                         </div>
                     </Link>
 
-                    <Link to="/home" className={classes.link}>
+                    <Link to="/profile" className={classes.link}>
                         <div className={classes.block_OrdersCartProfile}>
-                            <img src={profile_img} alt="" draggable={false}/>
+                            <img src={profile_img} alt="" draggable={false} className={classes.profile_icon}/>
                             <p>Профиль</p>
                         </div>
                     </Link>

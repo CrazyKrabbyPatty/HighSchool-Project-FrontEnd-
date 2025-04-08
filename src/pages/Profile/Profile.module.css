@@ -18,7 +18,6 @@ main{
 .first_column{
     display: flex;
     flex-direction: column;
-    margin-left: 50px;
 }
 
 .profile{
