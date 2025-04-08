@@ -4,15 +4,19 @@ import Navbar from "../../component/UI/Navbar/Navbar";
 
 const Cart = () => {
     return (
-        <body>
+        <body className={classes.cart_body}>
             <Navbar/>
 
-            <main>
+            <main className={classes.cart_main}>
                 <div className={classes.first_column}>
+                    <div className={classes.products}>
 
+                    </div>
                 </div>
                 <div className={classes.second_column}>
+                    <div className={classes.buy}>
 
+                    </div>
                 </div>
             </main>
         </body>

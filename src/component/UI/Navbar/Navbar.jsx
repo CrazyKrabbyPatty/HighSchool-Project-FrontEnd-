@@ -12,7 +12,7 @@ const Navbar = () => {
     return (
         <header className={classes.container}>
 
-            <div className={classes.navbar}>
+            <nav className={classes.navbar}>
 
                 <Link to="/home" className={classes.link}>
 
@@ -76,7 +76,7 @@ const Navbar = () => {
 
                 </div>
 
-            </div>
+            </nav>
 
         </header>
     );

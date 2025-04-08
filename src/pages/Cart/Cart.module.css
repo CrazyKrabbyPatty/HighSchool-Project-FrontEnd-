@@ -1,11 +1,45 @@
+.cart_body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(242, 245, 250);
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.cart_main{
+    font-family: "Lohit_Devanagari", sans-serif;
+    background-color: #fff;
+    border-radius: 20px 20px 0 0;
+    margin-top: 75px;
+    display: flex;
+    justify-content: space-around;
+    width: 90vw;
+    height: 100vh;
+}
+
 .first_column{
     display: flex;
     flex-direction: column;
 }
 
+.products{
+    width: 46vw;
+    height: 73vh;
+    background-color: rgb(242, 245, 250);
+    border-radius: 20px 20px 20px 20px;
+    margin-top: 75px;
+}
+
 .second_column{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    margin-top: 300px;
+}
+
+.buy{
+    width: 33vw;
+    height: 35vh;
+    background-color: rgb(242, 245, 250);
+    border-radius: 20px 20px 20px 20px;
+    margin-top: 75px;
 }
