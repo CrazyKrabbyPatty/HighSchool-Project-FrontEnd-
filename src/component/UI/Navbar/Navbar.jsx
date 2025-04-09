@@ -29,23 +29,23 @@ const Navbar = () => {
 
                 </Link>
 
-                <Link to="/home" className={classes.link}>
+                <div className={classes.MarketTeam}>
 
-                    <div className={classes.MarketTeam}>
-
+                    <Link to="/home" className={classes.link}>
                         <div className={classes.block_MarketTeam}>
                             <img src={market_img} alt="" draggable={false} className={classes.small_icons}/>
                             <p>Товары</p>
                         </div>
+                    </Link>
 
+                    <Link to="/create-product" className={classes.link}>
                         <div className={classes.block_MarketTeam}>
                             <img src={team_img} draggable={false} className={classes.small_icons}/>
                             <p>Партнёрам</p>
                         </div>
+                    </Link>
 
-                    </div>
-
-                </Link>
+                </div>
 
                 <div className={classes.search_block}>
                     <p>Поисковая строка</p>
