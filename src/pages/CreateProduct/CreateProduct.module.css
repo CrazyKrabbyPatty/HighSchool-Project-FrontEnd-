@@ -59,6 +59,34 @@
     font-size: 2em;
 }
 
+.categorySelect {
+    background-color: rgb(242, 245, 250);
+    border: none;
+    width: 22vw;
+    height: 7vh;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 1em;
+    margin-top: 30px;
+}
+
+/* Стили для option */
+.categorySelect option {
+    padding: 8px;
+    background: rgb(242, 245, 250);
+}
+
+/* Подсветка при наведении */
+.categorySelect option:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+/* Стиль для выбранного option */
+.categorySelect option:checked {
+    background-color: #e0f7fa;
+}
+
 .ProductName_Publish{
     align-items: center;
     margin-top: 75px;
@@ -148,7 +176,7 @@
 .customButton {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #10C44C;
     color: white;
     border-radius: 5px;
     cursor: pointer;
@@ -157,7 +185,7 @@
 }
 
 .customButton:hover {
-    background-color: #45a049;
+    background-color: #4CAF50;
 }
 
 .information{

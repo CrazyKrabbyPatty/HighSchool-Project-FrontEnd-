@@ -17,7 +17,7 @@ const Login = () => {
         event.preventDefault();
         try {
             const response = await axios.post(
-                "http://localhost:8081/identity/authentication/signin",
+                "http://localhost:8080/identity/authentication/signin",
                 { username, password }
             );
             // Предполагаем, что бэкенд возвращает JWT-токен

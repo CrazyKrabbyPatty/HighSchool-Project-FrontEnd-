@@ -4,7 +4,7 @@ import Navbar from "../../component/UI/Navbar/Navbar";
 
 const Cart = () => {
     return (
-        <body className={classes.cart_body}>
+        <div className={classes.cart_body}>
             <Navbar/>
 
             <main className={classes.cart_main}>
@@ -33,7 +33,7 @@ const Cart = () => {
                     </div>
                 </div>
             </main>
-        </body>
+        </div>
     );
 };
 

@@ -7,7 +7,7 @@ import ButtonBlock from "../../component/UI/button/ButtonBlock";
 
 const Profile = () => {
     return (
-        <body className={classes.profile_body}>
+        <div className={classes.profile_body}>
 
             <Navbar />
 
@@ -70,7 +70,7 @@ const Profile = () => {
 
             </main>
 
-        </body>
+        </div>
     );
 };
 

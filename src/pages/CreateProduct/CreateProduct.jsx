@@ -4,20 +4,67 @@ import classes from "./CreateProduct.module.css";
 import axios from "axios";
 
 const CreateProduct = () => {
+    const [image, setImage] = useState(null);
+    const [category, setCategory] = useState("");
     const [ProductName, setProductName] = useState("");
     const [ProductDescription, setProductDescription] = useState("");
     const [cost, setCost] = useState(0.0);
-    const [category, setCategory] = useState("");
-    const [image, setImage] = useState(null);
+    const categories = ["Носки", "Бальзам", "СЛАУ"];
+    const token = localStorage.getItem("token");
 
     const handleFileChange = (e) => {
-        setImage(e.target.files[0]);
+        const file = e.target.files[0];
+        if (!file) return;
+
+        // Проверка размера файла (пример: 3MB)
+        if (file.size > 3 * 1024 * 1024) {
+            alert("Файл слишком большой (макс. 3MB)");
+            return;
+        }
+
+        setImage(file);
+    };
+
+    const ConvertImageToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = (error) => reject(error);
+        });
+    }
+
+    const handleCategoryChange = (e) => {
+        setCategory(e.target.value);
     };
 
     const Create_Product = async (event) => {
         event.preventDefault();
-        console.log(event);
-    }
+        try {
+            // Конвертируем изображение в Base64 перед отправкой
+            const imageBase64 = image ? await ConvertImageToBase64(image) : null;
+
+            const response = await axios.post(
+                "http://localhost:8082/product/catalog/create-product",
+                {
+                    name: ProductName,
+                    description: ProductDescription,
+                    category: category,
+                    price: cost,
+                    image: imageBase64  // Передаем уже конвертированное изображение
+                },
+                // {
+                //     headers: {
+                //         "Authorization": `Bearer ${token}`
+                //     }
+                // }
+            );
+
+            console.log("Ответ сервера:", response.data);
+        } catch (error) {
+            console.error("Ошибка при создании товара:", error);
+        }
+    };
 
     return (
         <div className={classes.CreateProduct_body}>
@@ -48,6 +95,21 @@ const CreateProduct = () => {
                         }
 
                         <p className={classes.text_big}>Категория товара</p>
+
+                        <select
+                            value={category}
+                            onChange={handleCategoryChange}
+                            className={classes.categorySelect}
+                        >
+                            <option value="" disabled hidden>
+                                Выберите категорию
+                            </option>
+                            {categories.map((cat, index) => (
+                                <option key={index} value={cat} className={classes.categorySelect}>
+                                    {cat}
+                                </option>
+                            ))}
+                        </select>
                     </div>
 
                     <div className={classes.second_column}>
@@ -99,7 +161,7 @@ const CreateProduct = () => {
 
                         <div className={classes.information}>
                             <p>Внимание!</p>
-                            <p>Изображение может иметь максимальный размер 100x100!</p>
+                            <p>Изображение может иметь максимальный объём 3мб!</p>
                         </div>
 
                     </div>

@@ -16,7 +16,7 @@ const Registration = () => {
         event.preventDefault();
         try {
             await axios.post(
-                "http://localhost:8081/identity/authentication/signup",
+                "http://localhost:8080/identity/authentication/signup",
                 { username, password, email }
             );
             navigate("/login"); // После регистрации перенаправляем на вход
