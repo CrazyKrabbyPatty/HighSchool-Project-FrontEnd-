@@ -17,11 +17,12 @@ const Login = () => {
         event.preventDefault();
         try {
             const response = await axios.post(
-                "http://localhost:8080/identity/authentication/signin",
+                "http://localhost:8081/identity/authentication/signin",
                 { username, password }
             );
             // Предполагаем, что бэкенд возвращает JWT-токен
-            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("token", response.data.accessToken);
+            console.log(localStorage.getItem("token"));
             setIsAuth(true); // Меняем состояние авторизации
             navigate("/home"); // Перенаправляем на защищённую страницу
         } catch (err) {

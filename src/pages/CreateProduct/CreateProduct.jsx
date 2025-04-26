@@ -8,7 +8,7 @@ const CreateProduct = () => {
     const [category, setCategory] = useState("");
     const [ProductName, setProductName] = useState("");
     const [ProductDescription, setProductDescription] = useState("");
-    const [cost, setCost] = useState(0.0);
+    const [cost, setCost] = useState("");
     const categories = ["Носки", "Бальзам", "СЛАУ"];
     const token = localStorage.getItem("token");
 
@@ -25,44 +25,42 @@ const CreateProduct = () => {
         setImage(file);
     };
 
-    const ConvertImageToBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = (error) => reject(error);
-        });
-    }
-
     const handleCategoryChange = (e) => {
         setCategory(e.target.value);
     };
 
     const Create_Product = async (event) => {
         event.preventDefault();
+
         try {
-            // Конвертируем изображение в Base64 перед отправкой
-            const imageBase64 = image ? await ConvertImageToBase64(image) : null;
+            const formData = new FormData();
+            formData.append('name', ProductName);
+            formData.append('description', ProductDescription);
+            formData.append('category', category);
+            formData.append('price', parseInt(cost));
+
+            if (image) {
+                formData.append('image', image);
+            }
+
+            // for (let [key, value] of formData.entries()) {
+            //     console.log(key, value);
+            // }
 
             const response = await axios.post(
                 "http://localhost:8082/product/catalog/create-product",
+                formData,
                 {
-                    name: ProductName,
-                    description: ProductDescription,
-                    category: category,
-                    price: cost,
-                    image: imageBase64  // Передаем уже конвертированное изображение
-                },
-                // {
-                //     headers: {
-                //         "Authorization": `Bearer ${token}`
-                //     }
-                // }
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "multipart/form-data"
+                    }
+                }
             );
 
             console.log("Ответ сервера:", response.data);
         } catch (error) {
-            console.error("Ошибка при создании товара:", error);
+            console.error("Ошибка при отправке формы:", error);
         }
     };
 
@@ -139,7 +137,7 @@ const CreateProduct = () => {
                             className={classes.Price}
                             value={cost}
                             type="number"
-                            onChange={(e) => setCost(parseFloat(e.target.value))}
+                            onChange={(e) => setCost(e.target.value)}
                             placeholder="Рыночная стоимость"
                         />
 
