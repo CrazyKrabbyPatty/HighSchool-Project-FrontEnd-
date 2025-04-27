@@ -7,45 +7,37 @@ import axios from "axios";
 
 const Home = () => {
 
-    const { setIsAuth } = useContext(AuthContext);
-
-    const check_token = async () => {
-        try {
-            const token = localStorage.getItem("token");
-            if (!token) {
-                console.log("Токен не найден");
-                setIsAuth(false);
-                return;
-            }
-
-            const response = await axios.post(
-                "http://localhost:8081/identity/tokens/validate",
-                { token },
-                {
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                }
-            );
-
-            if (response.data.isValid) {
-                console.log("Токен валиден");
-            } else {
-                console.log("Токен невалиден");
-                setIsAuth(false);
-                localStorage.removeItem("token");
-            }
-        } catch (error) {
-            console.error("Ошибка при проверке токена:", error);
-            setIsAuth(false);
-            localStorage.removeItem("token");
-        }
-    };
+    const {setIsAuth} = useContext(AuthContext);
+    const token = localStorage.getItem("token");
 
     const handleLogout = () => {
         localStorage.removeItem("token");
         setIsAuth(false);
     };
+
+    const FetchProducts = async (event) => {
+        event.preventDefault();
+        console.log(token)
+        try {
+            const response = await axios.get(
+                "http://localhost:8082/product/catalog/search/filter",
+                {
+                    params: {
+                        offset: 0,
+                        limit: 8,
+                        filterType: "ASC",
+                        sortBy: ["id"]
+                    },
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                    }
+                }
+            )
+            console.log(response);
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return (
         <div className={classes.background}>
@@ -53,7 +45,7 @@ const Home = () => {
             <ProductCard/>
             <h1>НИЖЕ ТЫКАЙ</h1>
             <button onClick={handleLogout}>Выйти</button>
-            <button onClick={check_token}>Проверить токен</button>
+            <button onClick={FetchProducts}>Взять продукты</button>
         </div>
     );
 };
