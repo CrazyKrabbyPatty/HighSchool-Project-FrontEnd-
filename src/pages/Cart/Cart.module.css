@@ -3,8 +3,8 @@
     flex-direction: column;
     align-items: center;
     background-color: rgb(242, 245, 250);
-    /*max-height: 100%;*/
-    /*overflow-y: auto;*/
+    max-height: 100%;
+    overflow-y: auto;
 }
 
 .cart_main{
@@ -28,7 +28,8 @@
     height: 73vh;
     background-color: rgb(242, 245, 250);
     border-radius: 20px 20px 20px 20px;
-    margin-top: 75px;
+    margin-top: 6vh;
+    margin-bottom: 20vh;
 }
 
 .buy{

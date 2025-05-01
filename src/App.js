@@ -13,6 +13,9 @@ function App() {
         if (token) {
             setIsAuth(true); // Если токен есть, считаем пользователя авторизованным
         }
+        else{
+            setIsAuth(false);
+        }
         setIsLoading(false);
     }, []);
 

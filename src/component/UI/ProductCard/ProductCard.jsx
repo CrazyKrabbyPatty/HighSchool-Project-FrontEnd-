@@ -1,18 +1,20 @@
 import React from 'react';
 import classes from './ProductCard.module.css';
+import star_img from "./Source/star.svg"
+import comments_img from "./Source/comments.svg"
 
-const ProductCard = () => {
+const ProductCard = (props) => {
 
     return (
-        <div className={classes.card}>
-            <img src="#"/>
-            <p>137 руб</p>
-            <p>Бальзами для губ увлажняющий NIVEA</p>
+        <div className={classes.card} key={props.id}>
+            <img src={props.image}/>
+            <p>{props.cost}</p>
+            <p>{props.name}</p>
             <div>
-                <img src="#"/>
-                <p></p>
-                <img src="#"/>
-                <p></p>
+                <img src={star_img}/>
+                <p>{props.rating}</p>
+                <img src={comments_img}/>
+                <p>{props.num_com}</p>
             </div>
         </div>
     );
