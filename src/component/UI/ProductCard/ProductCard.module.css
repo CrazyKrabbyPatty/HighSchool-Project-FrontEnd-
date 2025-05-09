@@ -1,8 +1,44 @@
 .card {
-    margin: 20px;
-    width: 20vw;
-    height: 37vh;
+    width: 15vw;
+    height: 41vh;
     background-color: rgb(242, 245, 250);
     display: flex;
     flex-direction: column;
+    border-radius: 30px 30px 5px 5px;
+}
+
+.image {
+    width: auto;
+    height: auto;
+    max-height: 31vh;
+
+}
+
+.information{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px;
+    margin-top: auto;
+    padding-bottom: 10px;
+}
+
+.information_sub{
+    display: flex;
+    gap: 5px;
+}
+
+.cost{
+    margin-top: 20px;
+    font-size: 2em;
+}
+
+.product_name{
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.small_ico{
+    width: 23px;
+    height: 23px;
 }

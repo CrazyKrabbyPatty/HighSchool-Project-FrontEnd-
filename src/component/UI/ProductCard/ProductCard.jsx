@@ -7,14 +7,20 @@ const ProductCard = (props) => {
 
     return (
         <div className={classes.card} key={props.id}>
-            <img src={props.image}/>
-            <p>{props.cost}</p>
-            <p>{props.name}</p>
-            <div>
-                <img src={star_img}/>
-                <p>{props.rating}</p>
-                <img src={comments_img}/>
-                <p>{props.num_com}</p>
+            <img src={props.image} className={classes.image} />
+            <div className={classes.information}>
+                <p className={classes.cost}>
+                    {props.cost} руб.
+                </p>
+                <p className={classes.product_name}>
+                    {props.name}
+                </p>
+                <div className={classes.information_sub}>
+                    <img src={star_img} className={classes.small_ico}/>
+                    <p>{props.rating}</p>
+                    <img src={comments_img} className={classes.small_ico}/>
+                    <p>{props.num_com}</p>
+                </div>
             </div>
         </div>
     );

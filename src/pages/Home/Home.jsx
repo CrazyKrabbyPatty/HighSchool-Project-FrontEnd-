@@ -1,4 +1,5 @@
 import {useContext, useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 import {AuthContext} from "../../context";
 import classes from "./Home.module.css"
 import Navbar from "../../component/UI/Navbar/Navbar";
@@ -97,19 +98,21 @@ const Home = () => {
         <div className={classes.background}>
             <Navbar />
             <main className={classes.home_main}>
+                <button onClick={handleLogout}>Выйти</button>
                 <div className={classes.productsContainer}>
                     {products.map(product => (
-                        <ProductCard
-                            key={product.id}
-                            image={images[product.id]}
-                            name={product.name}
-                            cost={product.price}
-                            rating={product.rating}
-                        />
+                        <Link to={`/product/${product.id}`} key={product.id}>
+                            <ProductCard
+                                image={images[product.id]}
+                                name={product.name}
+                                cost={product.price}
+                                rating={product.rating}
+                            />
+                        </Link>
                     ))}
                 </div>
                 <h1>НИЖЕ ТЫКАЙ</h1>
-                <button onClick={handleLogout}>Выйти</button>
+
                 <button onClick={FetchProducts}>Взять продукты</button>
             </main>
         </div>
