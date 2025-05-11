@@ -66,7 +66,7 @@ const Home = () => {
                 }
             );
 
-            console.log(response);
+            // console.log(response);
 
             // Преобразуем ArrayBuffer в Blob, чтобы создать URL
             // const blob = new Blob([response.data], { type: response.headers['content-type'] || 'image/jpeg' });
