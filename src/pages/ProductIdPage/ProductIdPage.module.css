@@ -13,8 +13,9 @@
     margin-top: 75px;
     padding: 50px;
     width: 90vw;
-    height: auto; /* вместо 100vh */
-    min-height: calc(100vh - 75px); /* Минимальная высота */
+    /*height: auto; !* вместо 100vh *!*/
+    /*min-height: calc(100vh - 75px); !* Минимальная высота *!*/
+    margin-bottom: 50px;
     overflow-y: auto;
 }
 
@@ -178,4 +179,20 @@
 .product_supplier_name_supp{
     font-size: 1em;
     color: gray;
+}
+
+.similar_products_placeholder_main{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.similar_products_placeholder{
+    display: grid;
+    grid-template-columns: repeat(3, 10vw);
+}
+
+.link{
+    text-decoration: none;
 }

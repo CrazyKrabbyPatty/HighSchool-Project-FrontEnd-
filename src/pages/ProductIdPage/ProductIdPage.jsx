@@ -1,111 +1,52 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import {Link, useParams} from 'react-router-dom';
 import classes from './ProductIdPage.module.css';
 import Navbar from "../../component/UI/Navbar/Navbar";
 import comm_stat_img from "./Source/comments-statistic.svg"
 import checked_user_img from "./Source/checked-user.svg"
 import global_ico_img from "./Source/global-icon.svg"
 import star_img from "./Source/star.svg"
+import PostProducts from "../../API/PostProducts";
+import {useImageLoader} from "../../hooks/useImageLoader";
+import ProductCardSmall from "../../component/UI/ProductCardSmall/ProductCardSmall";
 
 const ProductIdPage = () => {
     const { id } = useParams();
-    const [product, setProduct] = useState(null);
-    const [products, setProducts] = useState([]);
-    const [image, setImage] = useState(null);
-    const [error, setError] = useState(null);
     const token = localStorage.getItem("token");
 
+    const [product, setProduct] = useState(null);
+    const [altproducts, setAltProducts] = useState([]);
+    const {images, getImageById} = useImageLoader();
+
+    const fetchProduct = async () => {
+        try {
+            // Загружаем основной продукт
+            const productData = await PostProducts.getProductsById({id, token});
+            setProduct(productData);
+
+            // Загружаем изображение для основного продукта
+            getImageById(productData.id, token);
+
+            // Загружаем похожие продукты
+            const altproductsData = await PostProducts.getFilteredProducts({
+                limit: 3,
+                token
+            });
+            setAltProducts(altproductsData);
+
+            // Загружаем изображения для похожих продуктов
+            altproductsData.forEach(product => {
+                getImageById(product.id, token);
+            });
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
     useEffect(() => {
-        const fetchProduct = async () => {
-            console.log(id)
-            console.log(token)
-            try {
-                const productResponse = await axios.get(
-                    `http://localhost:8082/product/catalog/search`,
-                    {
-                        params: {
-                            by: "uuid",         // Обязательный параметр в том же формате
-                            category: "uuid",   // Категория
-                            value: id           // ID товара
-                        },
-                        paramsSerializer: params => {
-                            return Object.entries(params)
-                                .map(([key, value]) =>
-                                    `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
-                                )
-                                .join('&');
-                        },
-                        headers: {
-                            "Authorization": `Bearer ${token}`,
-                            "accept": "application/json"
-                        }
-                    }
-                );
-
-                // console.log("Response data:", productResponse.data); // Для отладки
-
-                if (!productResponse.data) {
-                    throw new Error('Данные товара не получены');
-                }
-                console.log(productResponse.data);
-                setProduct(productResponse.data);
-            } catch (err) {
-                console.error("Full error:", err);
-                console.error("Error response data:", err.response?.data);
-                setError(err.response?.data?.message || err.message || 'Неизвестная ошибка');
-            }
-
-            // Загружаем изображение товара
-            try {
-                const imageResponse = await axios.get(
-                    `http://localhost:8082/product/source`,
-                    {
-                        params: { productId: id },
-                        headers: {
-                            "Authorization": `Bearer ${token}`,
-                        },
-                        responseType: 'arraybuffer'
-                    }
-                );
-
-                const blob = new Blob([imageResponse.data], { type: 'image/png' });
-                const imageUrl = URL.createObjectURL(blob);
-                setImage(imageUrl);
-            } catch (imageError) {
-                console.error("Ошибка загрузки изображения:", imageError);
-                setImage(null); // Или установите изображение-заглушку
-            }
-
-            try {
-                const response = await axios.get(
-                    "http://localhost:8082/product/catalog/search/filter",
-                    {
-                        params: {
-                            offset: 0,
-                            limit: 8,
-                            filterType: "ASC",
-                            sortBy: "id"
-                        },
-                        headers: {
-                            "Authorization": `Bearer ${token}`,
-                        }
-                    }
-                )
-                // console.log(response);
-                setProducts(response.data.content);
-
-                console.log(products);
-
-            } catch (error) {
-                console.error(error);
-            }
-        };
-
         fetchProduct();
     }, [id, token]);
 
-    if (error) return <div>Ошибка: {error}</div>;
     if (!product) return <div>Товар не найден</div>;
 
     return (
@@ -116,7 +57,7 @@ const ProductIdPage = () => {
                 <div className={classes.column_first}>
 
                     <div className={classes.main_information}>
-                        <img src={image} className={classes.image} alt="картинка товара"/>
+                        <img src={images[product.id]} className={classes.image} alt="картинка товара"/>
                         <div className={classes.main_information_title}>
                             <span className={classes.main_information_name}>{product.name}</span>
                             <div className={classes.main_information_comments}>
@@ -136,6 +77,24 @@ const ProductIdPage = () => {
                     <div className={classes.description}>
                         <span className={classes.description_title}>Описание</span>
                         <p>{product.description || 'Нет описания'}</p>
+                    </div>
+
+                    <div className={classes.similar_products_placeholder_main}>
+                        <p className={classes.description_title}>Рекомендуем также</p>
+                        <div className={classes.similar_products_placeholder}>
+                            {
+                                altproducts.map((product) => (
+                                    <Link to={`/product/${product.id}`} key={product.id} className={classes.link}>
+                                        <ProductCardSmall
+                                            image={images[product.id]}
+                                            name={product.name}
+                                            cost={product.price}
+                                        />
+                                    </Link>
+                                    )
+                                )
+                            }
+                        </div>
                     </div>
 
                 </div>

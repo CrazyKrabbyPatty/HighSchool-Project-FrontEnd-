@@ -1,4 +1,3 @@
-import React from 'react';
 import classes from './ProductCard.module.css';
 import star_img from "./Source/star.svg"
 import comments_img from "./Source/comments.svg"

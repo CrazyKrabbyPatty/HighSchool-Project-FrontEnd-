@@ -40,3 +40,7 @@ html, body {
     max-height: none;
     height: auto; /* Гибкая высота */
 }
+
+.link{
+    text-decoration: none;
+}
