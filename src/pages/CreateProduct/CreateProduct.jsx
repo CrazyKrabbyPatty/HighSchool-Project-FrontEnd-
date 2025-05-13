@@ -58,6 +58,13 @@ const CreateProduct = () => {
                 }
             );
 
+            // Очистка формы после успешной отправки
+            setImage(null);
+            setCategory("");
+            setProductName("");
+            setProductDescription("");
+            setCost("");
+
             console.log("Ответ сервера:", response.data);
         } catch (error) {
             console.error("Ошибка при отправке формы:", error);
@@ -73,24 +80,26 @@ const CreateProduct = () => {
                 <form onSubmit={Create_Product} className={classes.CreateProduct_main}>
 
                     <div className={classes.first_column}>
-                        <p className={classes.text_big}>Создание товара</p>
+                        <div className={classes.all_image_placeholder}>
+                            <p className={classes.text_big}>Создание товара</p>
 
-                        {
-                            image ?
-                            (
-                                <img
-                                    src={URL.createObjectURL(image)}
-                                    alt='Предпросмотр'
-                                    className={classes.image_placeholder}
-                                />
-                            )
-                            :
-                            (
-                                <div className={classes.image_placeholder_missing}>
-                                    <p>Изображение недоступно</p>
-                                </div>
-                            )
-                        }
+                            {
+                                image ?
+                                    (
+                                        <img
+                                            src={URL.createObjectURL(image)}
+                                            alt='Предпросмотр'
+                                            className={classes.image_placeholder}
+                                        />
+                                    )
+                                    :
+                                    (
+                                        <div className={classes.image_placeholder_missing}>
+                                            <p className={classes.image_placeholder_missing_text}>Изображение недоступно</p>
+                                        </div>
+                                    )
+                            }
+                        </div>
 
                         <p className={classes.text_big}>Категория товара</p>
 
@@ -158,7 +167,7 @@ const CreateProduct = () => {
                         </div>
 
                         <div className={classes.information}>
-                            <p>Внимание!</p>
+                            <p className={classes.attention}>Внимание!</p>
                             <p>Изображение может иметь максимальный объём 3мб!</p>
                         </div>
 
