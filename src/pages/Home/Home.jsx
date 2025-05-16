@@ -25,7 +25,10 @@ const Home = () => {
     const FetchProducts = async () => {
         try {
             const productsData = await PostProducts.getFilteredProducts(
-                {token}
+                {
+                    limit: 100,
+                    token
+                }
             )
 
             setProducts(productsData);

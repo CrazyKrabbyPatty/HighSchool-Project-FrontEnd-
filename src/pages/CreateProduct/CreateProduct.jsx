@@ -59,11 +59,11 @@ const CreateProduct = () => {
             );
 
             // Очистка формы после успешной отправки
-            setImage(null);
-            setCategory("");
-            setProductName("");
-            setProductDescription("");
-            setCost("");
+            // setImage(null);
+            // setCategory("");
+            // setProductName("");
+            // setProductDescription("");
+            // setCost("");
 
             console.log("Ответ сервера:", response.data);
         } catch (error) {

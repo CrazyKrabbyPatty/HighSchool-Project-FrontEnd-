@@ -62,8 +62,8 @@
 
 .svg_big{
     margin-bottom: 30px;
-    width: 170px;
-    height: 130px;
+    width: 8vw;
+    height: 13vh;
 }
 
 .p_lower{
@@ -82,11 +82,25 @@ p{
 }
 
 .small_icons{
-    width: 36px;
-    height: 36px;
+    /*width: 36px;*/
+    /*height: 36px;*/
+    width: 2vw;
+    height: 2vw;
 }
 
 .profile_icon{
     width: 50px;
     height: 50px;
+}
+
+/*and (width: 2880px) and (height: 1620px) and*/
+
+@media screen and (min-resolution: 2dppx){
+    p{
+        font-size: 1em;
+    }
+    /*.small_icons{*/
+    /*    width: 3vw;*/
+    /*    height: 16px;*/
+    /*}*/
 }

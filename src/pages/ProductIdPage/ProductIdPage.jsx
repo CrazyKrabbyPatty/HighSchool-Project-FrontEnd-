@@ -97,6 +97,12 @@ const ProductIdPage = () => {
                         </div>
                     </div>
 
+                    <div className={classes.comments_block}>
+
+                        <p>Отзывы на товар</p>
+
+                    </div>
+
                 </div>
 
                 <div className={classes.column_second}>

@@ -3,9 +3,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 100vh;
 }
 
-.product_id_page_main{
+.product_id_page_main {
     display: flex;
     justify-content: space-between;
     background-color: #fff;
@@ -13,16 +14,19 @@
     margin-top: 75px;
     padding: 50px;
     width: 90vw;
-    /*height: auto; !* вместо 100vh *!*/
-    /*min-height: calc(100vh - 75px); !* Минимальная высота *!*/
-    margin-bottom: 50px;
-    overflow-y: auto;
+    /*margin-bottom: 50px;*/
+    /* Ключевые изменения: */
+    /*flex-grow: 1; !* Растягивает блок на всю доступную высоту *!*/
+    min-height: calc(100vh - 175px); /* 75px (Navbar) + 50px (margin-top) + 50px (margin-bottom) */
+    clip-path: inset(0 -100vmax); /* Обрезает тень только по бокам */
 }
 
-.column_first{
+.column_first {
     display: flex;
     flex-direction: column;
     width: 1200px;
+    /* Разрешаем растягивание контента */
+    flex-grow: 1;
 }
 
 .image{
@@ -30,9 +34,11 @@
     height: 400px;
 }
 
-.main_information{
+/* Убираем фиксированную высоту у этих блоков */
+.main_information {
     display: flex;
-    height: 400px;
+    /* height: 400px; Убираем фиксированную высоту */
+    min-height: 400px; /* Минимальная высота */
 }
 
 .main_information_title{
@@ -64,14 +70,15 @@
     justify-items: flex-start;
 }
 
-.description{
+.description {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
     margin-top: 75px;
-    height: 250px;
+    /* height: 250px; Убираем фиксированную высоту */
     width: 800px;
+    min-height: 100px; /* Минимальная высота */
 }
 
 .description_title{
@@ -195,4 +202,16 @@
 
 .link{
     text-decoration: none;
+}
+
+.comments_block {
+    width: 650px;
+    /* height: 400px; Убираем фиксированную высоту */
+    margin-top: 75px;
+    /* Добавляем скролл только для комментариев при необходимости */
+    overflow-y: auto;
+    max-height: 500px; /* Максимальная высота блока комментариев */
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 8px;
 }

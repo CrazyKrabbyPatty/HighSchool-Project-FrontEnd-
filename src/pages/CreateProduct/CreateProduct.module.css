@@ -13,7 +13,7 @@
     border-radius: 20px 20px 0 0;
     margin-top: 75px;
     display: flex;
-    /*justify-content: space-around;*/
+    justify-content: space-around;
     width: 90vw;
     height: 100vh;
 }
@@ -21,25 +21,12 @@
 .first_column{
     display: flex;
     flex-direction: column;
-    align-content: flex-start;
-    width: 40vw; /* Фиксированная ширина */
-    margin-right: 50px; /* Отступ между колонками */
-    margin-left: 100px;
-}
-
-.all_image_placeholder{
-    display: flex;
-    flex-direction: column;
-    align-content: flex-start;
 }
 
 .second_column{
     display: flex;
     flex-direction: column;
-    align-content: flex-start;
-    width: 60vw; /* Фиксированная ширина */
-    margin-right: 100px;
-    padding-left: 60px;
+    width: 50vw;
 }
 
 .text_big{
@@ -48,12 +35,13 @@
     letter-spacing: 2px;
     margin-top: 65px;
     width: 22vw;
+    text-align: start;
 }
 
 .image_placeholder{
     width: 22vw;
     height: 29vh;
-    background-color: #D9D9D973;
+    background-color: rgb(242, 245, 250);
     border-radius: 20px 20px 20px 20px;
     margin-top: 75px;
 }
@@ -65,18 +53,14 @@
     justify-content: center;
     width: 22vw;
     height: 29vh;
-    background-color: #D9D9D973;
+    background-color: rgb(242, 245, 250);
     border-radius: 20px 20px 20px 20px;
     margin-top: 75px;
     font-size: 2em;
 }
 
-.image_placeholder_missing_text{
-    color: #9B9B9B;
-}
-
 .categorySelect {
-    background-color: #D9D9D973;
+    background-color: rgb(242, 245, 250);
     border: none;
     width: 22vw;
     height: 7vh;
@@ -112,7 +96,7 @@
     margin: 30px;
     width: 26vw;
     height: 6vh;
-    background-color: #D9D9D973;
+    background-color: rgb(242, 245, 250);
     border-radius: 20px;
     font-size: 1.2em;
     padding: 20px;
@@ -143,7 +127,7 @@
     margin: 30px;
     width: 26vw;
     height: 19vh;
-    background-color: #D9D9D973;
+    background-color: rgb(242, 245, 250);
     border-radius: 20px;
     padding: 20px;
     font-family: "Lohit_Devanagari", sans-serif;
@@ -161,7 +145,7 @@
     margin: 30px;
     width: 26vw;
     height: 6vh;
-    background-color: #D9D9D973;
+    background-color: rgb(242, 245, 250);
     border-radius: 20px;
     font-size: 1.2em;
     padding: 20px;
@@ -192,28 +176,22 @@
 .customButton {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #D9D9D973;
-    color: black;
-    border-radius: 20px;
+    background-color: #10C44C;
+    color: white;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
     margin-left: 30px;
-    font-size: 0.9em;
 }
 
 .customButton:hover {
-    background-color: rgba(145, 145, 145, 0.45);
+    background-color: #4CAF50;
 }
 
 .information{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-top: 30px;
+    margin-top: 10px;
     margin-left: 30px;
-    gap: 10px;
-}
-
-.attention{
-    color: #B91010;
 }

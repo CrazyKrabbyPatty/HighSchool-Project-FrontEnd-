@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import classes from "./Navbar.module.css";
-import logo_img from "./Source/logo-icon.svg"
+import logo_img from "./Source/logo-icon.png"
 import market_img from "./Source/market-icon.svg"
 import team_img from "./Source/team.svg"
 import cart_img from "./Source/cart-image.svg"
@@ -21,9 +21,6 @@ const Navbar = () => {
 
                         <div className={classes.logo_text}>
                             <p>NodeSale</p>
-                            <p className={classes.p_lower}>
-                                Продавать проще, чем кажется
-                            </p>
                         </div>
                     </div>
 

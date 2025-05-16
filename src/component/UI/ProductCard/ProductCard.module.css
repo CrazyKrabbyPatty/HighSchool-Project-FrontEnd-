@@ -6,13 +6,13 @@
     flex-direction: column;
     border-radius: 30px 30px 5px 5px;
     color: blue;
+    padding: 35px;
 }
 
 .image {
-    width: 300px;
-    min-height: 300px;
     /*width: auto;*/
     /*height: auto;*/
+    object-fit: fill !important;
     /*max-height: 31vh;*/
 
 }
@@ -21,7 +21,6 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-top: auto;
     padding-bottom: 10px;
     gap: 10px;
 }
