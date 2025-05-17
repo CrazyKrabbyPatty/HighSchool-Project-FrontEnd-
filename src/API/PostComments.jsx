@@ -30,25 +30,18 @@ export default class PostComments{
 
     static async getComments
     (
-        productId = "id",
-        filterType = "uuid",
-        searchBy = "id",
+        productId,
         token
     )
     {
         const commentResponse = await axios.get(
-            `http://localhost:8082/product/feedback/${filterType}/${searchBy}`,
+            `http://localhost:8082/product/feedback/search`,
             {
-                params: {
-                    id: productId  // передаётся как query ?id=...
-                }
-            },
-            {
-                headers: {
-                    "Authorization": `Bearer ${token}`,
-                }
+                params: {productId: productId},
+                headers: {"Authorization": `Bearer ${token}`}
             }
         )
+        console.log(commentResponse);
         return commentResponse.data;
     }
 }

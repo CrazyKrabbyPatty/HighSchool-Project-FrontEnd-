@@ -8,7 +8,6 @@ import {AuthContext, UserId} from "../../context";
 
 const Login = () => {
     const {setIsAuth} = useContext(AuthContext);
-    const {user} = useContext(UserId);
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -25,7 +24,6 @@ const Login = () => {
             // console.log(response);
             localStorage.setItem("token", response.data.accessToken);
             // console.log(localStorage.getItem("token"));
-            user(username)
             setIsAuth(true); // Меняем состояние авторизации
             navigate("/home"); // Перенаправляем на защищённую страницу
         } catch (err) {

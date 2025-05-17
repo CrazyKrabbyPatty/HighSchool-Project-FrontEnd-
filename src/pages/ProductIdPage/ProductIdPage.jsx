@@ -10,13 +10,12 @@ import PostProducts from "../../API/PostProducts";
 import {useImageLoader} from "../../hooks/useImageLoader";
 import ProductCardSmall from "../../component/UI/ProductCardSmall/ProductCardSmall";
 import PostComments from "../../API/PostComments";
-import {UserId} from "../../context";
 import ButtonBlock from "../../component/UI/button/ButtonBlock";
 
 const ProductIdPage = () => {
     const { id } = useParams();
     const token = localStorage.getItem("token");
-    const userId = useContext(UserId)
+    const userId = useState("");
 
     const [product, setProduct] = useState(null);
     const [altproducts, setAltProducts] = useState([]);
@@ -27,6 +26,7 @@ const ProductIdPage = () => {
 
     const fetchProduct = async () => {
         try {
+            console.log(token);
             // Загружаем основной продукт
             const productData = await PostProducts.getProductsById({id, token});
             setProduct(productData);
@@ -54,13 +54,11 @@ const ProductIdPage = () => {
         event.preventDefault()
         try{
             const response = PostComments.PublicateComment(
-                {
-                    userid: userId,
-                    productid: id,
-                    comment: comment,
-                    rating: rating,
-                    token
-                }
+                userId,
+                id,
+                comment,
+                rating,
+                token
             )
             console.log(response)
         } catch (error){
@@ -69,13 +67,10 @@ const ProductIdPage = () => {
     }
 
     const fetchComments = async () => {
+        console.log(id)
         const commentData = await PostComments.getComments(
-            {
-                productId: "id",
-                filterType: "uuid",
-                searchBy:id,
-                token
-            }
+            id,
+            token
         );
         console.log(commentData);
     }

@@ -33,6 +33,8 @@ const Home = () => {
 
             setProducts(productsData);
 
+            console.log(productsData)
+
             productsData.forEach(product => {
                 getImageById(product.id, token);
             });
