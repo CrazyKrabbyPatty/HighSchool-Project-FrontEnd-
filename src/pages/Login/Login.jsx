@@ -4,10 +4,11 @@ import axios from "axios";
 import classes from './Login.module.css';
 import InputBlock from "../../component/UI/input/InputBlock";
 import ButtonBlock from "../../component/UI/button/ButtonBlock";
-import {AuthContext} from "../../context";
+import {AuthContext, UserId} from "../../context";
 
 const Login = () => {
     const {setIsAuth} = useContext(AuthContext);
+    const {user} = useContext(UserId);
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -21,8 +22,10 @@ const Login = () => {
                 { username, password }
             );
             // Предполагаем, что бэкенд возвращает JWT-токен
+            // console.log(response);
             localStorage.setItem("token", response.data.accessToken);
-            console.log(localStorage.getItem("token"));
+            // console.log(localStorage.getItem("token"));
+            user(username)
             setIsAuth(true); // Меняем состояние авторизации
             navigate("/home"); // Перенаправляем на защищённую страницу
         } catch (err) {

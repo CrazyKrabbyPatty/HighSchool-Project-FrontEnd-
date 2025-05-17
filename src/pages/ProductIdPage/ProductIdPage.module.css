@@ -212,6 +212,15 @@
     overflow-y: auto;
     max-height: 500px; /* Максимальная высота блока комментариев */
     padding: 10px;
-    border: 1px solid #eee;
-    border-radius: 8px;
 }
+
+.comments_block p{
+    text-align: start;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.comments_block_comments{
+
+}
+

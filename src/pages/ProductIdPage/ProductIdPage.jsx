@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {Link, useParams} from 'react-router-dom';
 import classes from './ProductIdPage.module.css';
 import Navbar from "../../component/UI/Navbar/Navbar";
@@ -9,14 +9,21 @@ import star_img from "./Source/star.svg"
 import PostProducts from "../../API/PostProducts";
 import {useImageLoader} from "../../hooks/useImageLoader";
 import ProductCardSmall from "../../component/UI/ProductCardSmall/ProductCardSmall";
+import PostComments from "../../API/PostComments";
+import {UserId} from "../../context";
+import ButtonBlock from "../../component/UI/button/ButtonBlock";
 
 const ProductIdPage = () => {
     const { id } = useParams();
     const token = localStorage.getItem("token");
+    const userId = useContext(UserId)
 
     const [product, setProduct] = useState(null);
     const [altproducts, setAltProducts] = useState([]);
     const {images, getImageById} = useImageLoader();
+
+    const [comment, setComment] = useState("");
+    const [rating, setRating] = useState(0);
 
     const fetchProduct = async () => {
         try {
@@ -43,8 +50,39 @@ const ProductIdPage = () => {
         }
     };
 
+    const Upload_Comment = async (event) => {
+        event.preventDefault()
+        try{
+            const response = PostComments.PublicateComment(
+                {
+                    userid: userId,
+                    productid: id,
+                    comment: comment,
+                    rating: rating,
+                    token
+                }
+            )
+            console.log(response)
+        } catch (error){
+            console.log(error)
+        }
+    }
+
+    const fetchComments = async () => {
+        const commentData = await PostComments.getComments(
+            {
+                productId: "id",
+                filterType: "uuid",
+                searchBy:id,
+                token
+            }
+        );
+        console.log(commentData);
+    }
+
     useEffect(() => {
         fetchProduct();
+        fetchComments();
     }, [id, token]);
 
     if (!product) return <div>Товар не найден</div>;
@@ -100,6 +138,26 @@ const ProductIdPage = () => {
                     <div className={classes.comments_block}>
 
                         <p>Отзывы на товар</p>
+
+                        <form onSubmit={Upload_Comment}>
+                            <textarea
+                                className={classes.ProductDescription}
+                                placeholder="Комментарий"
+                                value={comment}
+                                onChange={(e) => setComment(e.target.value)}
+                            />
+
+                            <input
+                                placeholder="Рейтинг"
+                                type="number"
+                                value={rating}
+                                onChange={(e) => setRating(e.target.value)}
+                            />
+
+                            <button type="submit">
+                                Отправить комменатрий
+                            </button>
+                        </form>
 
                     </div>
 
