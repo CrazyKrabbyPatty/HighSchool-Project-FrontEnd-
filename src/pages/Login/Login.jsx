@@ -21,8 +21,9 @@ const Login = () => {
                 { username, password }
             );
             // Предполагаем, что бэкенд возвращает JWT-токен
-            // console.log(response);
+            console.log(response);
             localStorage.setItem("token", response.data.accessToken);
+            localStorage.setItem("refreshToken", response.data.refreshToken);
             // console.log(localStorage.getItem("token"));
             setIsAuth(true); // Меняем состояние авторизации
             navigate("/home"); // Перенаправляем на защищённую страницу

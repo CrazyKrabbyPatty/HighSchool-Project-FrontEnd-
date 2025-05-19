@@ -209,9 +209,8 @@
     /* height: 400px; Убираем фиксированную высоту */
     margin-top: 75px;
     /* Добавляем скролл только для комментариев при необходимости */
-    overflow-y: auto;
+    /*overflow-y: auto;*/
     max-height: 500px; /* Максимальная высота блока комментариев */
-    padding: 10px;
 }
 
 .comments_block p{
@@ -222,5 +221,16 @@
 
 .comments_block_comments{
 
+}
+
+.comments_block_upload_comments{
+    display: flex;
+    margin-top: 25px;
+    width: 26vw;
+    height: 6vh;
+    background-color: rgb(242, 245, 250);
+    border-radius: 20px;
+    font-size: 1.2em;
+    padding: 20px;
 }
 

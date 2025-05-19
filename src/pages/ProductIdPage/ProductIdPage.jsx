@@ -6,16 +6,18 @@ import comm_stat_img from "./Source/comments-statistic.svg"
 import checked_user_img from "./Source/checked-user.svg"
 import global_ico_img from "./Source/global-icon.svg"
 import star_img from "./Source/star.svg"
+import default_user_img from "./Source/default-profile-image.svg"
 import PostProducts from "../../API/PostProducts";
 import {useImageLoader} from "../../hooks/useImageLoader";
 import ProductCardSmall from "../../component/UI/ProductCardSmall/ProductCardSmall";
 import PostComments from "../../API/PostComments";
 import ButtonBlock from "../../component/UI/button/ButtonBlock";
+import PostIdentify from "../../API/PostIdentify";
 
 const ProductIdPage = () => {
     const { id } = useParams();
     const token = localStorage.getItem("token");
-    const userId = useState("");
+    const [userId, setUserId] = useState(null);
 
     const [product, setProduct] = useState(null);
     const [altproducts, setAltProducts] = useState([]);
@@ -26,7 +28,7 @@ const ProductIdPage = () => {
 
     const fetchProduct = async () => {
         try {
-            console.log(token);
+            // console.log(token);
             // Загружаем основной продукт
             const productData = await PostProducts.getProductsById({id, token});
             setProduct(productData);
@@ -67,15 +69,30 @@ const ProductIdPage = () => {
     }
 
     const fetchComments = async () => {
-        console.log(id)
-        const commentData = await PostComments.getComments(
+        // console.log(id)
+        const commentData = await PostComments.getComments
+        (
             id,
             token
         );
         console.log(commentData);
     }
 
+    const fetchUserId = async () => {
+        try {
+            const user = await PostIdentify.getUser
+            (
+                token
+            );
+            setUserId(user.id);
+        } catch (error) {
+            console.log(token )
+            console.error("Failed to fetch user:", error);
+        }
+    };
+
     useEffect(() => {
+        fetchUserId()
         fetchProduct();
         fetchComments();
     }, [id, token]);
@@ -112,29 +129,29 @@ const ProductIdPage = () => {
                         <p>{product.description || 'Нет описания'}</p>
                     </div>
 
-                    <div className={classes.similar_products_placeholder_main}>
-                        <p className={classes.description_title}>Рекомендуем также</p>
-                        <div className={classes.similar_products_placeholder}>
-                            {
-                                altproducts.map((product) => (
-                                    <Link to={`/product/${product.id}`} key={product.id} className={classes.link}>
-                                        <ProductCardSmall
-                                            image={images[product.id]}
-                                            name={product.name}
-                                            cost={product.price}
-                                        />
-                                    </Link>
-                                    )
-                                )
-                            }
-                        </div>
-                    </div>
+                    {/*<div className={classes.similar_products_placeholder_main}>*/}
+                    {/*    <p className={classes.description_title}>Рекомендуем также</p>*/}
+                    {/*    <div className={classes.similar_products_placeholder}>*/}
+                    {/*        {*/}
+                    {/*            altproducts.map((product) => (*/}
+                    {/*                <Link to={`/product/${product.id}`} key={product.id} className={classes.link}>*/}
+                    {/*                    <ProductCardSmall*/}
+                    {/*                        image={images[product.id]}*/}
+                    {/*                        name={product.name}*/}
+                    {/*                        cost={product.price}*/}
+                    {/*                    />*/}
+                    {/*                </Link>*/}
+                    {/*                )*/}
+                    {/*            )*/}
+                    {/*        }*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
 
                     <div className={classes.comments_block}>
 
                         <p>Отзывы на товар</p>
 
-                        <form onSubmit={Upload_Comment}>
+                        <form onSubmit={Upload_Comment} className={classes.comments_block_upload_comments}>
                             <textarea
                                 className={classes.ProductDescription}
                                 placeholder="Комментарий"
